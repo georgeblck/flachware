@@ -1,0 +1,78 @@
+[project]
+name = "flachware"
+version = "0.1.0"
+description = "A dataset of contemporary art from flachware.de for computational art analysis"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.12"
+authors = [{ name = "Nikolai Huckle" }]
+dependencies = [
+    "httpx",
+    "selectolax",
+    "polars",
+    "click",
+    "tqdm",
+    "anyio>=4.13.0",
+]
+
+[project.scripts]
+flachware = "flachware.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.2.0",
+    "matplotlib>=3.10.8",
+    "mypy>=1.19.1",
+    "nbconvert>=7.17.0",
+    "pillow>=12.1.1",
+    "pre-commit>=4.5.1",
+    "pytest>=9.0.2",
+    "ruff>=0.15.8",
+    "types-tqdm>=4.67.3.20260303",
+]
+analysis = [
+    "torch>=2.11.0",
+    "torchvision>=0.26.0",
+    "transformers>=5.4.0",
+    "umap-learn>=0.5.11",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes
+    "I",    # isort
+    "UP",   # pyupgrade
+    "B",    # flake8-bugbear
+    "SIM",  # flake8-simplify
+    "RUF",  # ruff-specific rules
+    "PIE",  # misc. lint (unnecessary pass, etc.)
+    "C4",   # comprehension style
+    "PT",   # pytest style
+    "ERA",  # commented-out code
+]
+ignore = [
+    "E501",  # line too long (handled case by case)
+]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+
+[[tool.mypy.overrides]]
+module = ["selectolax.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+
+# Data (too large for git, download via crawler)
+data/images/
+data/raw_html/
+*.parquet
+
+# Environment and secrets
+.env
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# R legacy
+.RData
+.Rhistory
+.Rproj.user/
+
+# Archive (old crawl data, kept locally only)
+archive/
+
+# Analysis outputs (generated locally)
+notebooks/generate_umap.py
+notebooks/umap_*.png
+data/embeddings.npy
+data/art_mask.npy
+
+# Claude
+.claude/
